@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class TimerStorage : MonoBehaviour
@@ -8,13 +7,16 @@ public class TimerStorage : MonoBehaviour
     [SerializeField] private TextMeshProUGUI playTimeText;
     [SerializeField] private TextMeshProUGUI focusTimeText;
 
-    // Timer values in seconds
-    private int playTimeValue = 0;
-    private int focusTimeValue = 0;
+    // Timer values in minutes
+    private int playTimeMinutes = 0;
+    private int focusTimeMinutes = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Load saved timer values when the script starts
+        LoadTimerValues();
+        
         UpdatePlayTimeDisplay();
         UpdateFocusTimeDisplay();
     }
@@ -22,60 +24,84 @@ public class TimerStorage : MonoBehaviour
     // Play Time increment functions
     public void AddPlayTime5()
     {
-        playTimeValue += 5;
+        playTimeMinutes += 5;
         UpdatePlayTimeDisplay();
-        Debug.Log("Play Time increased by 5. New value: " + playTimeValue);
+        Debug.Log("Play Time increased by 5 minutes. New value: " + playTimeMinutes + " minutes");
+        
+        // Save values automatically when changed
+        SaveTimerValues();
     }
 
     public void AddPlayTime10()
     {
-        playTimeValue += 10;
+        playTimeMinutes += 10;
         UpdatePlayTimeDisplay();
-        Debug.Log("Play Time increased by 10. New value: " + playTimeValue);
+        Debug.Log("Play Time increased by 10 minutes. New value: " + playTimeMinutes + " minutes");
+        
+        // Save values automatically when changed
+        SaveTimerValues();
     }
 
     public void AddPlayTime20()
     {
-        playTimeValue += 20;
+        playTimeMinutes += 20;
         UpdatePlayTimeDisplay();
-        Debug.Log("Play Time increased by 20. New value: " + playTimeValue);
+        Debug.Log("Play Time increased by 20 minutes. New value: " + playTimeMinutes + " minutes");
+        
+        // Save values automatically when changed
+        SaveTimerValues();
     }
 
     // Focus Time increment functions
     public void AddFocusTime5()
     {
-        focusTimeValue += 5;
+        focusTimeMinutes += 5;
         UpdateFocusTimeDisplay();
-        Debug.Log("Focus Time increased by 5. New value: " + focusTimeValue);
+        Debug.Log("Focus Time increased by 5 minutes. New value: " + focusTimeMinutes + " minutes");
+        
+        // Save values automatically when changed
+        SaveTimerValues();
     }
 
     public void AddFocusTime10()
     {
-        focusTimeValue += 10;
+        focusTimeMinutes += 10;
         UpdateFocusTimeDisplay();
-        Debug.Log("Focus Time increased by 10. New value: " + focusTimeValue);
+        Debug.Log("Focus Time increased by 10 minutes. New value: " + focusTimeMinutes + " minutes");
+        
+        // Save values automatically when changed
+        SaveTimerValues();
     }
 
     public void AddFocusTime20()
     {
-        focusTimeValue += 20;
+        focusTimeMinutes += 20;
         UpdateFocusTimeDisplay();
-        Debug.Log("Focus Time increased by 20. New value: " + focusTimeValue);
+        Debug.Log("Focus Time increased by 20 minutes. New value: " + focusTimeMinutes + " minutes");
+        
+        // Save values automatically when changed
+        SaveTimerValues();
     }
 
     // Reset functions
     public void ResetPlayTime()
     {
-        playTimeValue = 0;
+        playTimeMinutes = 0;
         UpdatePlayTimeDisplay();
         Debug.Log("Play Time reset to 0");
+        
+        // Save values automatically when changed
+        SaveTimerValues();
     }
 
     public void ResetFocusTime()
     {
-        focusTimeValue = 0;
+        focusTimeMinutes = 0;
         UpdateFocusTimeDisplay();
         Debug.Log("Focus Time reset to 0");
+        
+        // Save values automatically when changed
+        SaveTimerValues();
     }
 
     // Update the Play Time text display
@@ -83,7 +109,7 @@ public class TimerStorage : MonoBehaviour
     {
         if (playTimeText != null)
         {
-            playTimeText.text = "Play Time: " + FormatTime(playTimeValue);
+            playTimeText.text = "Play Time: " + playTimeMinutes + " min";
         }
     }
 
@@ -92,40 +118,47 @@ public class TimerStorage : MonoBehaviour
     {
         if (focusTimeText != null)
         {
-            focusTimeText.text = "Focus Time: " + FormatTime(focusTimeValue);
+            focusTimeText.text = "Focus Time: " + focusTimeMinutes + " min";
         }
     }
 
-    // Format time value to display in minutes:seconds format
-    private string FormatTime(int seconds)
-    {
-        int minutes = seconds / 60;
-        int remainingSeconds = seconds % 60;
-        return minutes + ":" + remainingSeconds.ToString("00");
-    }
-
-    // Save timer values to PlayerPrefs (optional)
+    // Save timer values to PlayerPrefs
     public void SaveTimerValues()
     {
-        PlayerPrefs.SetInt("PlayTimeValue", playTimeValue);
-        PlayerPrefs.SetInt("FocusTimeValue", focusTimeValue);
+        PlayerPrefs.SetInt("PlayTimeMinutes", playTimeMinutes);
+        PlayerPrefs.SetInt("FocusTimeMinutes", focusTimeMinutes);
         PlayerPrefs.Save();
+        Debug.Log("Timer values saved to PlayerPrefs");
     }
 
-    // Load timer values from PlayerPrefs (optional)
+    // Load timer values from PlayerPrefs
     public void LoadTimerValues()
     {
-        if (PlayerPrefs.HasKey("PlayTimeValue"))
+        if (PlayerPrefs.HasKey("PlayTimeMinutes"))
         {
-            playTimeValue = PlayerPrefs.GetInt("PlayTimeValue");
+            playTimeMinutes = PlayerPrefs.GetInt("PlayTimeMinutes");
+            Debug.Log("Loaded Play Time value: " + playTimeMinutes + " minutes");
         }
 
-        if (PlayerPrefs.HasKey("FocusTimeValue"))
+        if (PlayerPrefs.HasKey("FocusTimeMinutes"))
         {
-            focusTimeValue = PlayerPrefs.GetInt("FocusTimeValue");
+            focusTimeMinutes = PlayerPrefs.GetInt("FocusTimeMinutes");
+            Debug.Log("Loaded Focus Time value: " + focusTimeMinutes + " minutes");
         }
 
         UpdatePlayTimeDisplay();
         UpdateFocusTimeDisplay();
+    }
+    
+    // Get the current play time value (for other scripts to access)
+    public int GetPlayTimeMinutes()
+    {
+        return playTimeMinutes;
+    }
+    
+    // Get the current focus time value (for other scripts to access)
+    public int GetFocusTimeMinutes()
+    {
+        return focusTimeMinutes;
     }
 }
