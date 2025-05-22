@@ -23,8 +23,8 @@ public class ObjSpawn : MonoBehaviour
         Rigidbody rb = newObject.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.isKinematic = true;
-            rb.useGravity = false;
+            rb.isKinematic = false;
+            rb.useGravity = true;
         }
     }
 }

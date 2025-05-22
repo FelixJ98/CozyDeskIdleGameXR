@@ -3,12 +3,12 @@ using UnityEngine;
 public class SimpleHandMenu : MonoBehaviour
 {
     [Header("Hand Setup")]
-    [SerializeField] private OVRHand targetHand; // Drag your OVRHand component here
-    [SerializeField] private Transform handWrist; // Wrist transform from the hand
+    [SerializeField] private OVRHand targetHand;
+    [SerializeField] private Transform handWrist;
     
     [Header("Menu Settings")]
-    [SerializeField] private GameObject menuPanel; // Your UI panel
-    [SerializeField] private float rotationThreshold = 160f; // Degrees to trigger menu
+    [SerializeField] private GameObject menuPanel;
+    [SerializeField] private float rotationThreshold = 160f;
     [SerializeField] private float menuDistance = 0.1f;
     [SerializeField] private Vector3 menuOffset = Vector3.zero;
     
@@ -101,29 +101,6 @@ public class SimpleHandMenu : MonoBehaviour
         if (lookDirection != Vector3.zero)
         {
             menuPanel.transform.rotation = Quaternion.LookRotation(lookDirection);
-        }
-    }
-    
-    // Optional: Gizmos for debugging in Scene view
-    void OnDrawGizmos()
-    {
-        if (handWrist != null && handTracked)
-        {
-            // Draw palm direction
-            Gizmos.color = Color.blue;
-            Gizmos.DrawRay(handWrist.position, handWrist.forward * 0.1f);
-            
-            // Draw palm normal
-            Gizmos.color = Color.green;
-            Gizmos.DrawRay(handWrist.position, handWrist.up * 0.1f);
-            
-            // Draw menu position
-            if (menuVisible)
-            {
-                Gizmos.color = Color.red;
-                Vector3 menuPos = handWrist.position + (handWrist.forward * menuDistance) + menuOffset;
-                Gizmos.DrawWireSphere(menuPos, 0.02f);
-            }
         }
     }
 }

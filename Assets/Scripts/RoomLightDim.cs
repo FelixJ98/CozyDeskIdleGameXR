@@ -4,12 +4,12 @@ public class RoomLightDim : MonoBehaviour
 {
     [Header("Passthrough Settings")]
     public OVRPassthroughLayer passthroughLayer;
-    public float normalBrightness = 0.0f;     // Normal = 0.0f
-    public float dimmedBrightness = -0.8f;    // Dark = negative value
+    public float normalBrightness = 0.0f;
+    public float dimmedBrightness = -0.8f;
     public float contrast = 0.0f;
     public float saturation = 0.0f;
     
-    private bool isDimmed = true;  // Start dimmed
+    private bool isDimmed = true;
     
     void Start()
     {
@@ -18,10 +18,9 @@ public class RoomLightDim : MonoBehaviour
             passthroughLayer = FindObjectOfType<OVRPassthroughLayer>();
         }
         
-        // Set initial brightness to DIMMED
         if (passthroughLayer != null)
         {
-            passthroughLayer.SetBrightnessContrastSaturation(dimmedBrightness, contrast, saturation);
+            passthroughLayer.SetBrightnessContrastSaturation(normalBrightness, contrast, saturation);
         }
     }
     

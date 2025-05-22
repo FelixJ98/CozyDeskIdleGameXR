@@ -34588,7 +34588,7 @@ MonoBehaviour:
   Colliders: 1
   CutHoles: 0
   castShadows: 1
-  hideMesh: 0
+  hideMesh: 1
   Layer: 0
   textureCoordinateModes:
   - WallU: 5
@@ -34759,9 +34759,9 @@ SceneRoots:
   - {fileID: 883757239}
   - {fileID: 127929111}
   - {fileID: 480927581}
-  - {fileID: 307181116}
   - {fileID: 4057747954582120449}
   - {fileID: 3328211794040037036}
   - {fileID: 1254424846}
   - {fileID: 810446228}
   - {fileID: 2104593541}
+  - {fileID: 307181116}
