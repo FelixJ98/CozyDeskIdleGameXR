@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class CozyHouseLighting : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private Renderer targetMesh;
+    [SerializeField] private Material ogMat;
+    [SerializeField] private Material newMat;
+    
+    private bool isChanged = false;
+    
+    public void ToggleMaterial()
     {
+        if (isChanged)
+        {
+            targetMesh.material = ogMat;
+        }
+        else
+        {
+            targetMesh.material = newMat;
+        }
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        isChanged = !isChanged;
     }
 }
