@@ -22,6 +22,7 @@ TagManager:
   - QDSUITextInvertedColor
   - QDSUITextSecondaryInvertedColor
   - QDSUITextInputField
+  - Villager
   layers:
   - Default
   - TransparentFX
