@@ -479,6 +479,7 @@ GameObject:
   - component: {fileID: 6637135268991788803}
   - component: {fileID: 4019551339442085493}
   - component: {fileID: 992931440829278118}
+  - component: {fileID: 4360004216167329510}
   m_Layer: 0
   m_Name: Animal Villager
   m_TagString: Villager
@@ -578,3 +579,18 @@ MonoBehaviour:
   showDebugRays: 1
   validSurfaceRayColor: {r: 0, g: 1, b: 0, a: 1}
   edgeDetectedRayColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &4360004216167329510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5698751445591844458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c202f5fab7900c4d822882034c50c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab1: {fileID: 0}
+  prefab2: {fileID: 0}
+  spawnPoint: {fileID: 0}
